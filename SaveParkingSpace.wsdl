@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://soa.jboss.org/crud"
+                  xmlns:esbns1="http://com.cpqd.soa/services/crud/ParkingSpaceSaveRequest"
+                  xmlns:esbns2="http://com.cpqd.soa/services/crud/ParkingSpaceSaveResponse"
+                  xmlns:esbns3="http://com.cpqd.soa/types/Fault" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://soa.jboss.org/crud" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xs:schema
+                targetNamespace="http://com.cpqd.soa/services/crud/ParkingSpaceSaveRequest"
+                version="1.0"
+                xmlns:esbns1="http://com.cpqd.soa/services/crud/ParkingSpaceSaveRequest"
+                xmlns:esbns2="http://com.cpqd.soa/services/crud/ParkingSpaceSaveResponse"
+                xmlns:esbns3="http://com.cpqd.soa/types/Fault" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:tns="http://soa.jboss.org/crud" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="../xsd/parking_space_save_request.xsd"/>
+        </xs:schema>
+        <xs:schema
+                targetNamespace="http://com.cpqd.soa/services/crud/ParkingSpaceSaveResponse"
+                version="1.0"
+                xmlns:esbns1="http://com.cpqd.soa/services/crud/ParkingSpaceSaveRequest"
+                xmlns:esbns2="http://com.cpqd.soa/services/crud/ParkingSpaceSaveResponse"
+                xmlns:esbns3="http://com.cpqd.soa/types/Fault" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:tns="http://soa.jboss.org/crud" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="../xsd/parking_space_save_response.xsd"/>
+        </xs:schema>
+        <xs:schema targetNamespace="http://com.cpqd.soa/types/Fault"
+                   version="1.0"
+                   xmlns:esbns1="http://com.cpqd.soa/services/crud/ParkingSpaceSaveRequest"
+                   xmlns:esbns2="http://com.cpqd.soa/services/crud/ParkingSpaceSaveResponse"
+                   xmlns:esbns3="http://com.cpqd.soa/types/Fault" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                   xmlns:tns="http://soa.jboss.org/crud" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="../xsd/generic_fault.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="SaveParkingSpaceFault1">
+        <wsdl:part element="esbns3:fault" name="fault1">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SaveParkingSpaceReq">
+        <wsdl:part element="esbns1:parkingSpaceSaveRequest" name="in">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SaveParkingSpaceRes">
+        <wsdl:part element="esbns2:parkingSpaceSaveResponse" name="out">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="SaveParkingSpacePortType">
+        <wsdl:operation name="SaveParkingSpaceOp"><wsdl:documentation><![CDATA[&lt;b&gt;Entrada:&lt;/b&gt; &lt;br&gt;Lista de vagas de estacionamento a persistir &lt;br&gt;&lt;br&gt;Para incluir os seguintes campos são obrigatórios:&lt;br&gt;- Identificador público.&lt;br&gt;- Identificador da região.&lt;br&gt;- Identificador da categoria de veículo que a vaga permite.&lt;br&gt;&lt;br&gt;Caso seja informado um já existente, será feita atualização dos campos conforme os valores informados no xml. &lt;br&gt;&lt;br&gt;&lt;b&gt;Saída:&lt;/b&gt; &lt;br&gt;Para cada vaga de estacionamento persistida, será apresentada uma mensagem correspondente na mesma ordem que foi enviado no request, além de possíveis erros. &lt;br&gt;&lt;br&gt;]]></wsdl:documentation>
+            <wsdl:input message="tns:SaveParkingSpaceReq" name="SaveParkingSpaceReq">
+            </wsdl:input>
+            <wsdl:output message="tns:SaveParkingSpaceRes"
+                         name="SaveParkingSpaceRes">
+            </wsdl:output>
+            <wsdl:fault message="tns:SaveParkingSpaceFault1"
+                        name="fault1">
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SaveParkingSpaceBinding" type="tns:SaveParkingSpacePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="SaveParkingSpaceOp">
+            <soap:operation
+                    soapAction="http://soa.jboss.org/crud/SaveParkingSpaceOp"/>
+            <wsdl:input name="SaveParkingSpaceReq">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="SaveParkingSpaceRes">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SaveParkingSpaceService"><wsdl:documentation><![CDATA[&lt;b&gt;Entrada:&lt;/b&gt; &lt;br&gt;Lista de vagas de estacionamento a persistir &lt;br&gt;&lt;br&gt;Para incluir os seguintes campos são obrigatórios:&lt;br&gt;- Identificador público.&lt;br&gt;- Identificador da região.&lt;br&gt;- Identificador da categoria de veículo que a vaga permite.&lt;br&gt;&lt;br&gt;Caso seja informado um já existente, será feita atualização dos campos conforme os valores informados no xml. &lt;br&gt;&lt;br&gt;&lt;b&gt;Saída:&lt;/b&gt; &lt;br&gt;Para cada vaga de estacionamento persistida, será apresentada uma mensagem correspondente na mesma ordem que foi enviado no request, além de possíveis erros. &lt;br&gt;&lt;br&gt;]]></wsdl:documentation>
+        <wsdl:port binding="tns:SaveParkingSpaceBinding"
+                   name="SaveParkingSpacePortType">
+            <soap:address
+                    location="http://localhost/cpqd-cbill-esb-telecom/ebws/crud/SaveParkingSpace"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
