@@ -125,7 +125,11 @@ class PswnController extends AppController {
         }
 
         //envio da mensagem
-        $resp = $this->Sensor->query('SaveParkingSpaceOp', array($data));
+        try {
+          $resp = $this->Sensor->query('SaveParkingSpaceOp', array($data));
+        } catch (Exception $e) {
+          $resp = false;
+        }
         //echo "<PRE>";
         //die(var_dump($resp));
 
