@@ -11,7 +11,8 @@ class PswnController extends AppController {
    */
   public function sheeps($sensores = null) {
 
-    error_reporting(E_ERROR);
+    error_reporting(0);
+    @ini_set('display_errors', 0);
 
     $this->layout = 'ajax';
 
