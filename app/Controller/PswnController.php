@@ -163,6 +163,7 @@ class PswnController extends AppController {
     }
 
     $this->response->type('json');
+    $this->response->header('HTTP/1.1 200 OK');
 
   }
 
