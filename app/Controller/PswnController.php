@@ -11,6 +11,8 @@ class PswnController extends AppController {
    */
   public function sheeps($sensores = null) {
 
+    error_reporting(E_ERROR);
+
     $this->layout = 'ajax';
 
     CakeLog::config('sensor', array(
