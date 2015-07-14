@@ -95,6 +95,7 @@ class PswnController extends AppController {
 
           //apaga o arquivo
           if (file_exists(WWW_ROOT. 'files' . DS . $processadoItem->uin)) {
+            $this->logMe('Arquivo existe: ' . $processadoItem->uin);
             unlink(WWW_ROOT. 'files' . DS . $processadoItem->uin);
           }
         }
